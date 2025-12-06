@@ -1,0 +1,23 @@
+// "Riff 0001" @by crixnuts
+// @version 0.1
+setcps(.8)
+let chords = chord("<G9 Dm9>/4").dict('ireal')
+stack(
+  stack(
+    s("bd:2").struct("<[x*<1 2> [~@4 x]] x>"),
+    s("~ [rim, sd:<2 1>]").room("<.2 .2>").mask("<1!3 [1*3 0]>/4"),
+    n("2*4").s("hh:1").late("[0 .01]*4").size(4),
+    s("rd:<1!3 2>*4").mask("<0 0 1 1>/4"),
+  ),
+  chords.offset(-1).voicing().s("gm_epiano1:1").phaser(8).room(.5),
+  n("<0!3 [1 0]>").set(chords).mode("root:d2").voicing().s("gm_acoustic_bass:4"),
+  chords.n("0 [4 3]")
+  .anchor("g6").voicing().s("gm_flute")
+  .segment(4).clip(rand.range(.4,.9)).room(.75)
+  .shape(.3).delay(.25).fm(sine.range(3,8).slow(8))
+  .lpf(sine.range(500,1000).slow(8)).lpq(5)
+  //.rarely(ply("2")).chunk(4, fast(2))
+  .gain(perlin.range(.6,.9))
+  //.mask("<0 1 1 0>/16")
+)
+.late("[0 .01]*4").late("[0 .01]*2").size(4)
