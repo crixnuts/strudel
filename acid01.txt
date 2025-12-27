@@ -4,7 +4,7 @@
 - 2025-12-27
 */
 
-setcpm(136/4)
+setcpm(132/4)
 register('acidenv', (x, pat) => pat.lpf(300)
   .lpenv(x*9).lps(.2).lpd(.12))
 stack(
@@ -18,7 +18,10 @@ stack(
   .trans(0).o(4).gain(slider(0.639))
   .mask("<[0 1 0 1] 1 1 1 1 1 1 1>/4")
   ._pianoroll(),
-
+  note("<7 [- - - 3] [- - - 4] [- - 5 -]>*8").sound("gm_pizzacato_strings")
+  .scale("g:minor")
+  .lpf(300),
+// Drums
   stack(
     s("bd*4")
     .gain(3).hpf(66)
@@ -28,7 +31,7 @@ stack(
     .release(.1)
     .room(.5)
     .delay(.05)
-    .o(5),
+    .o(5)._scope(),
     s("hh*16").mask("<[0 0 1 0] [1 1 0 [0 1]] 1!5 [1 1 1 0]>/4")
     .early(.01).o(5),
   ).bank("rolandjd990")
