@@ -1,15 +1,21 @@
+/*
+- Author: crixnuts
+- Acid practice based on _switch_angel's instagram lessons in groove. Thank you Switch Angel!
+- 2025-12-27
+*/
+
 setcpm(136/4)
 register('acidenv', (x, pat) => pat.lpf(300).lpenv(x*9).lps(.2).lpd(.12))
 stack(
-  n("<0 4 0 9 7>*16").s("sawtooth").scale("g:minor").trans(-24)
+  n("<0 4 0 9 7>*16").s("sawtooth").scale("g:minor").trans(-24).jux(rev())
   .o(3).acidenv(slider(0.625))
-  ._pianoroll()  .mask("<0 1 1 1 1 1 1 1>/4")
+  ._pianoroll()  .mask("<0 1 1 1 1 1 1 0>/4")
   ,
   n("<0>*16").s("supersaw").scale("<g:minor [f:minor!2 e:minor <f:minor c:minor>]>/2")
   .acidenv(slider(0.568))
   .trans(0).o(4)
   .gain(slider(0.789))
-  .mask("<0 1 1 1 1 1 1 1>/4")
+  .mask("<0 0 1 1 1 1 1 1>/4")
   ._pianoroll(),
   n("<1>*16").s("hh")
   .mask("<[0 1] 1!7>/4").o(4),
@@ -17,7 +23,7 @@ stack(
   n(run(16)).scale("g:minor:pentatonic").s("saw")
   .trans(-24)
   .delay(.7).rev()
-  .mask("<0!7 1 0!8>"),
+  .mask("<0!7 1 0!8>").hush(),
   
   s("rhodespolaris_bd!4")
   .duck("3:4:5:6")
