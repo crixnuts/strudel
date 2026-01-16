@@ -1,0 +1,28 @@
+setcpm(120/6)
+register('acidenv', (x, pat) => pat.lpf(300)
+  .lpenv(x*9).lps(.2).lpd(.12))
+let chords = chord("<F Bb C A C4!4>/4")//<e g# b>/4")
+stack(
+  stack( // DRUMS
+    s("hh(12,12)").gain("<1 .5>*12"),
+    n("[[0 0 - 0] [0 - 0 0] [- 0 0 -] [0 0 - 0] [0 - 0 0] [- 0 0 - ]]/2").s("bd")
+    .gain("[1 .8 .6 .5 .4 .3 .2 .1]/2").speed("[1 .99 .98 .97 .96 .95 .94 .93]/2")
+    .ply("<1 1 1 <1 2>>")
+    .room(1.5).distort(1),
+    n("<- 0 - 0 - 0>*3").s("sd").gain("<- 1 - .7  - .3>*3")
+    //s("bd(5,8,7)").room(1.5).distort(1),
+    //n("[- 0 - 0]").s("<~ cp:3>").room("<0 .3>").adsr(.05).gain(.2),
+    //n("[0 <1 2>]*4").s("hh"),
+    // s("rd:2*4").mask("<0 0 1 1>/8").gain(.5)
+  ).bank("rolandjd990"),
+  /* note("<[f3 f3] f3 [f3!2] [- f3] [g3 g3] g3 [g3 g3] [- g3] [a3 a3] a3 c4*1.5 [- [- d3]] e3@3 ->*6")
+  .sound("gm_lead_6_voice")
+  .phaser(4).room(2).offset(1) */
+  note("<[0 0] 0 [0!2] [- 0] [1 1] 1 [1 1] [- 1] [2 2] 2 4 -2.75 -1.5@3 ->*6")
+  .sound("gm_lead_6_voice")
+  .scale("D:minor")
+  .phaser(4).room(2).offset(1)
+  //note("[[0 -] - - -]/8").sound("saw")//.mask("<1 0>"),
+  //  note("[[0!4 ~]*8 -]/4").sound("saw").mask("<0 1>/4"),
+  //chords.offset(-1).voicing().s("gm_epiano1").phaser(4).room(4).gain(.5)
+) 

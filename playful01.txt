@@ -1,0 +1,16 @@
+setcpm(140/4)
+
+stack(
+  stack(
+  n("0*4").s("bd").gain(1).speed(1).room(1.5).diode("2:1"),
+  n("[- 1]*2").s("sd:6"),
+  n("0*8").s("hh").gain(2)
+  ).bank("jd990"),
+
+  n("0").s("supersaw").scale("<C:minor D:minor G:minor <E:minor B:major>>")
+  .detune(.5),  
+  note("<0 1>")
+  .sound("tri")
+  .scale("C:minor").rev()
+  .detune(.1).room(2).offset(-1)
+)

@@ -1,0 +1,30 @@
+setcpm(120/3)
+register('acidenv', (x, pat) => pat.lpf(300)
+  .lpenv(x*9).lps(.2).lpd(.12))
+let chords = chord("<F Bb C A C4!4>/4")//<e g# b>/4")
+stack(
+  stack( // DRUMS
+    s("hh(16,16)").gain("<1 .4>*16"),
+    s("bd(3,8,0)")
+    .gain(1).speed(1).room(1.5).distort(1),
+    s("sd:2(2,4,1)").gain("<2 1.2>*2")
+  ).bank("rolandjd990"),
+  n("<3@3 4 5@3 6>*4").scale("<g2:minor d2:minor>/2").s("supersaw").mask("<0 0 1 1>/4"),
+  n("<5!16 0!16>*4").scale("d4:minor").s("supersaw")
+  .room(2).early(.25).pan(rand).hpf(100).gain(.7).mask("<0 0 0 1>/4"),
+  s("pulse!16").dec(.1).fm(time).fmh(time).o(4),
+  s("[wt_digital:3,sawtooth]!16").wt(.3).wtenv(.3).unison(2).dec(.16).diode("4:.4")
+  .fm(time.mod("<1 _ _ 2>")).mask("<0 0 1 1>/4")
+)
+
+  //n("<0 1 2 3>").s("supersaw").distort("<0 .5 1 1.5>"),//.mask("<0 1 1 1 0 1 1 1>/4"),
+  //n("[-1 -2 0 -2 1 -2 0 -2]").s("gm_pad_poly").sustain(1).decay(.5).release(.1).scale("g4:minor").gain(1),
+  //n("<4 0 - 0>").s("square").gain(2)//.adsr(".1:.5:.5:.5")
+  //note("[[0!3 -] <1 2 4>]").sound("supersaw").scale("<D:minor>"),
+  //note("f e d <g c>").sound("saw").distort(.1)
+  /* note("[0,3,5]!6").fast(2).s("supersaw").scale("<C:major D:major G:major <E:minor B:major>>")
+  .detune(.5).mask("<0 0 0 1 1 1 1 1>/8"),  
+  note("<<0 1>")
+  .sound("tri")
+  .scale("C:minor").rev()
+  .detune(.1).room(2).offset(-1) */

@@ -1,0 +1,15 @@
+setcpm(28)
+let chords = chord("<Am Em Cm Dm>/4").dict('ireal')
+stack(
+  stack(
+    s("bd").struct("<[x*<1,2> [~@3 x]] x>").room(1.4).mask("<1@4 0@12>"),
+    s("bd(<3,9>/16,16,0)").room(1.3).distort(1).mask("<0@4 1@12>"),
+    n("[3 3 2 2] [1 1 1 1] [0 - 0 0] [[0 0 0 0]!3]").s("perc perc lt mt").mask("<0@3 1 0@12>"),
+    s("<~ sd:3>*4").mask("<0@4 1@12>"),
+    s("<perc:0 misc:8>*4(9,16,2)"),
+    s("hh!16".gain("<1 .25>*8"))
+    ).bank("rolandjd990")._punchcard({fillActive:1,stroke:1,autorange:1})  .o(1),
+  n("<-9 <-7 [-5 -6]>>/4")
+  .s("gm_pad_poly")//.mask("<0 1 1 1>/4")
+  .scale("e:minor").adsr(".05:1:1:.5").diode("<2>/4").o(3),
+ )
